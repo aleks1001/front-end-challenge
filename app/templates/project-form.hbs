@@ -1,0 +1,23 @@
+{{#modal-component close='removeModal' save=actionName title=title }}
+    <form>
+        {{#with newProject as |p|}}
+            <div class="form-group">
+                <label for="projectName">Project Name</label>
+                {{input type="text" value=p.name class="form-control" maxlength="50" id="projectName" placeholder="Project Name"}}
+            </div>
+            <div class="form-group">
+                <label for="projectOwner">Project Owner</label>
+                {{input type="text" value=p.owner.name class="form-control" maxlength="50" id="projectOwner" placeholder="Project Owner"}}
+            </div>
+            <div class="form-group">
+                <label for="projectDescription">Description</label>
+                {{textarea rows="5" value=p.description id="projectDescription" class="form-control" placeholder="Description"}}
+            </div>
+            <div class="checkbox">
+                <label>
+                    {{input type='checkbox' checked=p.active}} Active
+                </label>
+            </div>
+        {{/with}}
+    </form>
+{{/modal-component}}

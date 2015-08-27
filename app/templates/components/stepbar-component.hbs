@@ -1,0 +1,7 @@
+<div class="step-bar small">
+    <span class="total {{unless isActive 'hidden'}}">{{total}}</span>
+    <span class="current {{if isActive 'active'}}">{{current}}</span>
+    <div class="progress">
+        <div class="progress-bar {{unless isActive 'hidden'}}" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style={{percent}}></div>
+    </div>
+</div>

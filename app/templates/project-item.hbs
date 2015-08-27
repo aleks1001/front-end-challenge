@@ -1,0 +1,11 @@
+<tr>
+    <td>
+        {{#link-to 'project' model}}
+            {{model.name}}
+        {{/link-to}}
+    </td>
+    <td>{{model.owner.name}}</td>
+    <td>{{model.endDate}}</td>
+    <td>{{stepbar-component value=model.percent total=model.total_steps current=model.current_step isActive=model.active}}</td>
+    <td>{{badge-component value=model.active}}</td>
+</tr>
