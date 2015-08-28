@@ -6,16 +6,6 @@ import Ember from 'ember';
 import ProjectModel from '../models/projectModel';
 
 export default Ember.ArrayController.extend({
-    init: function () {
-        this._super();
-        this.set('newProject', ProjectModel.create({
-            start_date: moment().format('X'),
-            end_date: moment().format('X'),
-            active: true,
-            total_steps: 30,
-            current_step: 11
-        }));
-    },
     actionName: 'addProject',
     title: 'Add New Project',
     itemController: 'projectItem',
@@ -40,9 +30,8 @@ export default Ember.ArrayController.extend({
     actions: {
         addProject: function (callback) {
             var project = this.get('newProject');
-            project.set('id', this.get('length') + 1);
             if (project.get('isValid')) {
-                this.get('model').pushObject(project);
+                this.get('model').pushObject(project.serialize());
                 callback();
             }
         },
@@ -58,6 +47,12 @@ export default Ember.ArrayController.extend({
             this.set('sortAscending', !this.get('sortAscending'));
         },
         removeModal: function () {
+            return true;
+        },
+        openModal: function () {
+            this.set('newProject', ProjectModel.create({
+                id: this.get('length') + 1
+            }));
             return true;
         }
     }
