@@ -22,21 +22,22 @@ export default Ember.Controller.extend({
         var current = this.get('model.current_step');
         return current + '/' + total;
     }.property('model.total_steps', 'modal.current_step'),
-    isNext: function(){
+    isNext: function () {
         var length = this.get('projects.length');
         return this.get('id') < length;
-    }.property('projects','id'),
-    isPrev: function(){
+    }.property('projects', 'id'),
+    isPrev: function () {
         return this.get('id') > 1;
-    }.property('projects','id'),
+    }.property('projects', 'id'),
     actions: {
-        saveProject: function(){
+        saveProject: function (callback) {
             console.log("Saving...");
+            callback();
         },
-        nextProject: function(){
+        nextProject: function () {
             this.transitionToRoute('project', this.get('projects').findBy('id', this.get('id') + 1));
         },
-        prevProject: function(){
+        prevProject: function () {
             this.transitionToRoute('project', this.get('projects').findBy('id', this.get('id') - 1));
         }
     }

@@ -15,5 +15,8 @@ export default Ember.Object.extend({
     init: function(){
         this._super();
         this.set('owner', Ember.Object.create(this.get('owner')));
-    }
+    },
+    isValid: function(){
+        return (this.get('name.length') > 0 && this.get('owner.name.length') > 1);
+    }.property('name', 'owner.name')
 });

@@ -22,8 +22,10 @@ export default Ember.Component.extend({
             this.$('.modal').modal('hide');
         },
         ok: function(){
-            this.sendAction('save');
-            this.$('.modal').modal('hide');
+            var self = this;
+            this.sendAction('save', function(){
+              self.$('.modal').modal('hide');
+            });
         }
     }
 });

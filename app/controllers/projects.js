@@ -6,7 +6,7 @@ import Ember from 'ember';
 import ProjectModel from '../models/projectModel';
 
 export default Ember.ArrayController.extend({
-    init: function(){
+    init: function () {
         this._super();
         this.set('newProject', ProjectModel.create({
             start_date: moment().format('X'),
@@ -38,9 +38,13 @@ export default Ember.ArrayController.extend({
         }
     }.property('@each', 'filter', 'sortProperties'),
     actions: {
-        addProject: function () {
-            var n = this.get('newProject');
-            this.get('model').pushObject(n);
+        addProject: function (callback) {
+            var project = this.get('newProject');
+            project.set('id', this.get('length') + 1);
+            if (project.get('isValid')) {
+                this.get('model').pushObject(project);
+                callback();
+            }
         },
         applyFilter: function (filter) {
             this.set('filter', filter);
@@ -52,6 +56,9 @@ export default Ember.ArrayController.extend({
                 this.set('sortProperties', [prop + ':desc']);
             }
             this.set('sortAscending', !this.get('sortAscending'));
+        },
+        removeModal: function () {
+            return true;
         }
     }
 });
