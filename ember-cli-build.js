@@ -16,6 +16,7 @@ module.exports = function (defaults) {
 
     app.import('bower_components/bootstrap/dist/css/bootstrap.css');
     app.import('bower_components/font-awesome/css/font-awesome.css');
+    app.import('bower_components/animate.css/animate.css');
 
     app.import('bower_components/moment/moment.js');
     app.import('bower_components/bootstrap/dist/js/bootstrap.js');
